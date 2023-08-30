@@ -27,7 +27,7 @@ jobs:
           images: noamtm/kafka-kraft
           tags: |
             type=ref,event=branch,prefix=_
-            type=ref,event=tag
+            type=semver,event=tag,pattern={{version}}
             type=sha
 
       - name: Build and push Docker image (release)

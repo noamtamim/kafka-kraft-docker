@@ -26,7 +26,7 @@ jobs:
         with:
           images: noamtm/kafka-kraft
           tags: |
-            type=ref,event=branch
+            type=ref,event=branch,prefix=_
             type=ref,event=tag
             type=sha
 

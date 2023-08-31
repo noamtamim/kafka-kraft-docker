@@ -1,0 +1,47 @@
+name: Publish Docker image
+
+on:
+  pull_request:  
+  push:
+    branches: ['*']
+
+env:
+  PUSH: github.event_name == 'push' && github.ref_name == github.event.repository.default_branch
+
+jobs:
+  build-and-push:
+    permissions:
+      packages: write
+      contents: read
+
+    name: Build Docker image and Push
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3
+
+      - name: Log in to GitHub Packages
+        if: env.PUSH
+        uses: docker/login-action@465a07811f14bebb1938fbed4728c6a1ff8901fc
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Extract metadata
+        id: meta
+        uses: docker/metadata-action@818d4b7b91585d195f67373fd9cb0332e31a7175
+        with:
+          images: |
+            ghcr.io/${{ github.repository }}
+          tags: |
+            type=ref,event=branch,prefix=_
+            type=sha
+      
+      - name: Build and Push
+        uses: docker/build-push-action@2eb1c1961a95fc15694676618e422e8ba1d63825
+        with:
+          context: .
+          push: ${{ PUSH }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}

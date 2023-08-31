@@ -1,9 +1,8 @@
 # kafka-kraft-docker
 
-A docker image for [Kafka](https://kafka.apache.org) without Zookeeper. Meant for development and testing purposes.
+A docker image for [Kafka in KRaft mode](https://developer.confluent.io/learn/kraft/) (without ZooKeeper), making it easier to run. Meant for development and testing purposes.
 
-For more information about the Kafka running in KRaft mode, 
-check out the [introductory blog post](https://www.confluent.io/blog/kafka-without-zookeeper-a-sneak-peek).
+Based on https://github.com/bashj79/kafka-kraft-docker.
 
 ## Run with Docker
 

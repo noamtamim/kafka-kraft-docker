@@ -7,7 +7,6 @@ on:
     types: [published]
 
 env:
-  # github.repository as <account>/<repo>
   DOCKER_IMAGE_NAME: noamtm/kafka-kraft
 
 jobs:

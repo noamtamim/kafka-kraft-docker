@@ -7,7 +7,7 @@ check out the [introductory blog post](https://www.confluent.io/blog/kafka-witho
 
 ## Run with Docker
 
-The image is [deployed to Docker Hub](https://hub.docker.com/r/noamtm/kafka-kraft). To run it:
+Releases are [published on Docker Hub](https://hub.docker.com/r/noamtm/kafka-kraft). To run it: 
 
 Detached mode:
 ```
